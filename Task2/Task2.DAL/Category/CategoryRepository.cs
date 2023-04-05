@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Task1.DAL.Context;
+using Task2.DAL.Context;
 
-namespace Task1.DAL.Category;
+namespace Task2.DAL.Category;
 
 public class CategoryRepository : ICategoryRepository
 {
@@ -31,6 +31,7 @@ public class CategoryRepository : ICategoryRepository
         {
             _context.Categories.Remove(category);
         }
+
         _context.SaveChanges();
     }
 

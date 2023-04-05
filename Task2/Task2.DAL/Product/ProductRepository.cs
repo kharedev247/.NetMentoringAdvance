@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Task1.DAL.Context;
+using Task2.DAL.Context;
 
-namespace Task1.DAL.Product;
+namespace Task2.DAL.Product;
 
 public class ProductRepository : IProductRepository
 {
@@ -31,6 +31,7 @@ public class ProductRepository : IProductRepository
         {
             _context.Products.Remove(product);
         }
+
         _context.SaveChanges();
     }
 
