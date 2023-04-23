@@ -7,4 +7,5 @@ public interface ICartRepository
     void AddItemsToCart(string cartId, Entities.Product cartItem);
     void DeleteItemsFromCart(string cartId, int itemId);
     List<Entities.Product> GetCartItems(string cartId);
+    void UpdateItemForAllCarts(Entities.Product product);
 }

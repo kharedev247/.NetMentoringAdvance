@@ -31,5 +31,10 @@ namespace Task2.BAL.Cart
         {
            return _cartRepository.GetCartItems(cartId);
         }
+
+        public void UpdateItemsForAllCart(DAL.Entities.Product product)
+        {
+            _cartRepository.UpdateItemForAllCarts(product);
+        }
     }
 }

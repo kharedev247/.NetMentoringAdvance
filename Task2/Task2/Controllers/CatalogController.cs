@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Task2.DAL.Entities;
 using Task2.Models;
+using Task2.RabbitMQ.Producer;
 using Response = Task2.Models.Response;
 
 namespace Task2.Controllers
@@ -12,12 +13,14 @@ namespace Task2.Controllers
         private readonly ILogger<CatalogController> _logger;
         private readonly ICategoryService _categoryService;
         private readonly IProductService _productService;
+        private readonly IRabbitMQProducer _rabbitMqProducer;
 
-        public CatalogController(ILogger<CatalogController> logger, ICategoryService categoryService, IProductService productService)
+        public CatalogController(ILogger<CatalogController> logger, ICategoryService categoryService, IProductService productService, IRabbitMQProducer rabbitMqProducer)
         {
             _logger = logger;
             _productService = productService;
             _categoryService = categoryService;
+            _rabbitMqProducer = rabbitMqProducer;
         }
 
         [HttpGet("Category")]
@@ -131,6 +134,7 @@ namespace Task2.Controllers
             try
             {
                 _productService.UpdateProduct(product);
+                _rabbitMqProducer.SendProductMessage(product);
                 response.Body = "Item updated successfully";
             }
             catch (Exception ex)

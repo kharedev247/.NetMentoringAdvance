@@ -1,6 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RabbitMQ.Client.Events;
+using System.Text;
+using System;
+using Newtonsoft.Json;
 using Task2.BAL.Cart;
 using Task2.DAL.Entities;
+using Task2.RabbitMQ.Consumer;
 
 namespace Task2.Controllers
 {
@@ -14,11 +19,14 @@ namespace Task2.Controllers
     {
         private readonly ILogger<CartingV1Controller> _logger;
         private readonly ICartService _cartService;
+        private readonly RabbitMQConsumer _rabbitMqConsumer;
 
-        public CartingV1Controller(ILogger<CartingV1Controller> logger, ICartService cartService)
+        public CartingV1Controller(ILogger<CartingV1Controller> logger, ICartService cartService, IRabbitMQConsumer rabbitMqConsumer)
         {
             _logger = logger;
             _cartService = cartService;
+            _rabbitMqConsumer = (RabbitMQConsumer)rabbitMqConsumer;
+            _rabbitMqConsumer.MessageDeliveryEventHandler += ProductMessageEventHandler;
         }
 
         /// <summary>
@@ -82,6 +90,21 @@ namespace Task2.Controllers
                 _logger.LogError(ex, "CartingV1Controller.DeleteItemFromCart");
                 return StatusCode(StatusCodes.Status500InternalServerError, ex);
             }
+        }
+
+        private void ProductMessageEventHandler(object model, BasicDeliverEventArgs eventArgs)
+        {
+            var body = eventArgs.Body.ToArray();
+            var updatedProduct = JsonConvert.DeserializeObject<Product>(Encoding.UTF8.GetString(body));
+            if (updatedProduct != null)
+            {
+                UpdateItemForCarts(updatedProduct);
+            }
+        }
+
+        private void UpdateItemForCarts(Product cartItem)
+        {
+            _cartService.UpdateItemsForAllCart(cartItem);
         }
     }
 }

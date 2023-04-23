@@ -7,6 +7,8 @@ using Task2.DAL.Cart;
 using Task2.DAL.Category;
 using Task2.DAL.Context;
 using Task2.DAL.Product;
+using Task2.RabbitMQ.Consumer;
+using Task2.RabbitMQ.Producer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +28,8 @@ builder.Services.AddScoped<ICartService, CartService>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<ICartRepository, CartRepository>();
+builder.Services.AddScoped<IRabbitMQProducer, RabbitMQProducer>();
+builder.Services.AddScoped<IRabbitMQConsumer, RabbitMQConsumer>();
 
 builder.Services.AddApiVersioning(option =>
 {

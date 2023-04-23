@@ -50,5 +50,16 @@ namespace Task2.DAL.Cart
         {
             return _context.Carts.First(x => x.Id == cartId).CartItems;
         }
+
+        public void UpdateItemForAllCarts(Entities.Product product)
+        {
+            var oldProduct = _context.Products.FirstOrDefault(x => x.Id == product.Id);
+            if (oldProduct != null)
+            {
+                _context.Products.Remove(oldProduct);
+            }
+            _context.Add(product);
+            _context.SaveChanges();
+        }
     }
 }
