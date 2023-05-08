@@ -9,8 +9,8 @@ public class CatalogDbContext : DbContext
         
     }
 
-    public DbSet<Entities.Product> Products { get; set; }
-    public DbSet<Entities.Category> Categories { get; set; }
+    public DbSet<Entities.Product> Product { get; set; }
+    public DbSet<Entities.Category> Category { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

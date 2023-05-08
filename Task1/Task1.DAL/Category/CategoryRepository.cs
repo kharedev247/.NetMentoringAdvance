@@ -14,33 +14,33 @@ public class CategoryRepository : ICategoryRepository
 
     public void Add(Entities.Category category)
     {
-        _context.Categories.Add(category);
+        _context.Category.Add(category);
         _context.SaveChanges();
     }
 
     public void Update(Entities.Category category)
     {
-        _context.Categories.Update(category);
+        _context.Category.Update(category);
         _context.SaveChanges();
     }
 
     public void Delete(string name)
     {
-        var category = _context.Categories.FirstOrDefault(x => x.Name == name);
+        var category = _context.Category.FirstOrDefault(x => x.Name == name);
         if (category != null)
         {
-            _context.Categories.Remove(category);
+            _context.Category.Remove(category);
         }
         _context.SaveChanges();
     }
 
     public List<Entities.Category> GetAll()
     {
-        return _context.Categories.ToList();
+        return _context.Category.ToList();
     }
 
     public Entities.Category GetByName(string name)
     {
-        return _context.Categories.FirstOrDefault(x => x.Name == name);
+        return _context.Category.FirstOrDefault(x => x.Name == name);
     }
 }
