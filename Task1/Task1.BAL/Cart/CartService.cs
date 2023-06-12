@@ -29,7 +29,7 @@ namespace Task1.BAL.Cart
 
         public List<DAL.Entities.Product> GetCartItems(string cartId)
         {
-           return _cartRepository.GetCartItems(cartId);
+            return _cartRepository.GetCartItems(cartId);
         }
 
         public void UpdateItemsForAllCart(DAL.Entities.Product product)

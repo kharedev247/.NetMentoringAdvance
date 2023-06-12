@@ -1,6 +1,4 @@
-﻿using RabbitMQ.Client.Events;
-
-namespace Task1.RabbitMQ.Consumer;
+﻿namespace Task1.RabbitMQ.Consumer;
 
 public interface IRabbitMQConsumer
 {

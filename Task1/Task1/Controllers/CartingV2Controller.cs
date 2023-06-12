@@ -13,7 +13,7 @@ namespace Task1.Controllers
     {
         private readonly ILogger<CartingV2Controller> _logger;
         private readonly ICartService _cartService;
-        
+
         public CartingV2Controller(ILogger<CartingV2Controller> logger, ICartService cartService)
         {
             _logger = logger;

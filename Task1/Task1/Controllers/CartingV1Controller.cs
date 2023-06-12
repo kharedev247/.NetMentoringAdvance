@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using RabbitMQ.Client.Events;
 using System.Text;
-using System;
-using Newtonsoft.Json;
 using Task1.BAL.Cart;
 using Task1.DAL.Entities;
 using Task1.RabbitMQ.Consumer;

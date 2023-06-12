@@ -14,13 +14,13 @@ public class RabbitMQConsumer : IRabbitMQConsumer
             HostName = "localhost"
         };
         var connection = factory.CreateConnection();
-        
+
         using var channel = connection.CreateModel();
         channel.QueueDeclare("product", exclusive: false);
-        
+
         var consumer = new EventingBasicConsumer(channel);
         consumer.Received += MessageDeliveryEventHandler;
-        
+
         channel.BasicConsume(queue: "product", autoAck: true, consumer: consumer);
     }
 }

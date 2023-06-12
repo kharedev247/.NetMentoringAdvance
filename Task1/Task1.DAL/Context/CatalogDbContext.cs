@@ -6,7 +6,7 @@ public class CatalogDbContext : DbContext
 {
     public CatalogDbContext(DbContextOptions<CatalogDbContext> options) : base(options)
     {
-        
+
     }
 
     public DbSet<Entities.Product> Products { get; set; }

@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Task1.DAL.Context;
+﻿using Task1.DAL.Context;
 
 namespace Task1.DAL.Category;
 

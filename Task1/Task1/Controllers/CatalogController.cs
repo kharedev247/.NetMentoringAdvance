@@ -153,7 +153,7 @@ namespace Task1.Controllers
             {
                 _productService.DeleteProduct(name);
                 response.Body = "Item deleted successfully";
-;            }
+            }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "CatalogController.DeleteItem");
