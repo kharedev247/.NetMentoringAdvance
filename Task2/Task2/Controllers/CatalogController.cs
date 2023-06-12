@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Task2.BAL.Category;
+using Task2.BAL.Product;
 using Task2.DAL.Entities;
 using Task2.Models;
 using Task2.RabbitMQ.Producer;

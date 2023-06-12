@@ -1,11 +1,12 @@
 ﻿using Task2.DAL.Entities;
 
+namespace Task2.BAL.Product;
 public interface IProductService
 {
-    void AddProduct(Product product);
+    void AddProduct(DAL.Entities.Product product);
     void DeleteProduct(string name);
-    List<Product> ListProducts();
-    List<Product> ListProductsByCategoryId(int categoryId);
-    Product GetProduct(string name);
-    void UpdateProduct(Product product);
+    List<DAL.Entities.Product> ListProducts();
+    List<DAL.Entities.Product> ListProductsByCategoryId(int categoryId);
+    DAL.Entities.Product GetProduct(string name);
+    void UpdateProduct(DAL.Entities.Product product);
 }

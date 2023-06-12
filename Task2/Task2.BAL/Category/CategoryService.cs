@@ -1,4 +1,6 @@
 ﻿using Task2.BAL.Validators;
+using Task2.DAL.Category;
+using Task2.DAL.Product;
 
 namespace Task2.BAL.Category;
 
